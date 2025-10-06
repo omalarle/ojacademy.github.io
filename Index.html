@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OJ Trading Academy - Trading desde Cero</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #000;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 80px 20px 40px 20px;
+      background-color: #000;
+    }
+    header img {
+      width: 150px;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 2.8em;
+      color: #d4af37;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      font-size: 1.2em;
+      color: #f5f5f5;
+    }
+
+    section {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #d4af37;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li::before {
+      content: "✔️ ";
+      color: #d4af37;
+    }
+
+    .button {
+      display: block;
+      width: 220px;
+      margin: 30px auto;
+      padding: 15px;
+      text-align: center;
+      background-color: #d4af37;
+      color: #000;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .button:hover {
+      background-color: #b38e28;
+    }
+
+    /* ---------- FORMULARIO NUEVO ---------- */
+    .formulario-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: radial-gradient(circle at center, #000 60%, #111);
+      border-radius: 15px;
+      border: 1px solid #d4af37;
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+      padding: 40px;
+      margin-top: 40px;
+    }
+
+    .formulario-container h2 {
+      color: #d4af37;
+      font-size: 1.8em;
+      margin-bottom: 20px;
+    }
+
+    form {
+      width: 100%;
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    form input, form select {
+      background: transparent;
+      border: 1px solid #d4af37;
+      border-radius: 8px;
+      color: #fff;
+      padding: 10px;
+      font-size: 1em;
+      outline: none;
+    }
+
+    form input::placeholder {
+      color: #c0a95b;
+    }
+
+    form select option {
+      background-color: #000;
+      color: #fff;
+    }
+
+    button {
+      background: linear-gradient(90deg, #d4af37, #b99729);
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #ffdc73, #d4af37);
+      transform: scale(1.05);
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 15px;
+      color: #d4af37;
+      font-weight: bold;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Botón flotante de WhatsApp */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(90deg, #d4af37, #b99729);
+      color: black;
+      border-radius: 50px;
+      padding: 12px 18px;
+      font-weight: bold;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 10;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+    }
+
+    .whatsapp-float img {
+      width: 22px;
+      height: 22px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #888;
+      border-top: 1px solid #333;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="OJ Trading Academy Logo" />
+    <h1>OJ TRADING ACADEMY</h1>
+    <p>Curso: Trading desde Cero con Índices Sintéticos</p>
+  </header>
+
+  <section>
+    <h2>¿Qué aprenderás?</h2>
+    <ul>
+      <li>Fundamentos del trading y los índices sintéticos</li>
+      <li>Análisis técnico con estructura y accion del precio</li>
+      <li>Estrategias reales de Swing Trading y Scalping</li>
+      <li>Gestión del riesgo y control emocional</li>
+      <li>Cómo pasar de cuenta demo a real con confianza</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Modalidad del curso</h2>
+    <p>🕐 Duración: 4 semanas</p>
+    <p>💻 Modalidad: 100% online (clases en vivo)</p>
+    <p>💬 Soporte: Grupo privado de WhatsApp y sesiones en vivo</p>
+  </section>
+
+  <section class="formulario-container">
+    <h2>Reserva tu cupo</h2>
+    <p style="text-align:center; color:#ccc;">
+      Este curso tiene cupos limitados para garantizar atención personalizada.<br>
+      Completa el formulario y te contactaremos para confirmar tu inscripción.
+    </p>
+
+    <form id="ojForm">
+      <input type="text" name="entry.1953265556" placeholder="Nombre completo" required>
+      <input type="email" name="entry.120086336" placeholder="Correo electrónico" required>
+      <input type="text" name="entry.1519285415" placeholder="País" required>
+      <input type="tel" name="entry.1054491933" placeholder="Teléfono" required>
+      <select name="entry.1547684256" required>
+        <option value="" disabled selected>¿Tienes experiencia en trading?</option>
+        <option value="Sí">Sí</option>
+        <option value="No">No</option>
+      </select>
+      <button type="submit">Enviar</button>
+      <p class="success-message" id="successMessage">✅ Gracias por tu interés. Un asesor de OJ Trading Academy te contactará pronto.</p>
+    </form>
+  </section>
+
+  <a href="https://wa.me/573025885695?text=Hola%20👋%20Estoy%20interesado%20en%20el%20curso%20Trading%20desde%20Cero%20con%20Índices%20Sintéticos%20de%20OJ%20Trading%20Academy." target="_blank" class="whatsapp-float">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    Contáctame
+  </a>
+
+  <footer>
+    <p>© 2025 OJ Trading Academy. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('ojForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      fetch('https://docs.google.com/forms/u/0/d/e/1FAIpQLSfs8bVyGL_xFg73Uh5iDrtlInKZZ3SDnLTMITEzxzHL3AQuQw/formResponse', {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+      }).then(() => {
+        form.reset();
+        successMessage.style.display = 'block';
+      }).catch(err => {
+        console.error('Error:', err);
+      });
+    });
+  </script>
+</body>
+</html>
