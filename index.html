@@ -18,6 +18,7 @@
       padding: 80px 20px 40px 20px;
       background-color: #000;
     }
+
     header img {
       width: 150px;
       margin-bottom: 20px;
@@ -202,7 +203,7 @@
     <h2>¿Qué aprenderás?</h2>
     <ul>
       <li>Fundamentos del trading y los índices sintéticos</li>
-      <li>Análisis técnico con estructura y accion del precio</li>
+      <li>Análisis técnico con estructura y acción del precio</li>
       <li>Estrategias reales de Swing Trading y Scalping</li>
       <li>Gestión del riesgo y control emocional</li>
       <li>Cómo pasar de cuenta demo a real con confianza</li>
@@ -211,7 +212,7 @@
 
   <section>
     <h2>Modalidad del curso</h2>
-    <p>🕐 Duración: 3 meses</p>
+    <p>🕐 Duración: 4 semanas</p>
     <p>💻 Modalidad: 100% online (clases en vivo)</p>
     <p>💬 Soporte: Grupo privado de WhatsApp y sesiones en vivo</p>
   </section>
@@ -224,11 +225,11 @@
     </p>
 
     <form id="ojForm">
-      <input type="text" name="entry.1953265556" placeholder="Nombre completo" required>
-      <input type="email" name="entry.120086336" placeholder="Correo electrónico" required>
-      <input type="text" name="entry.1519285415" placeholder="País" required>
-      <input type="tel" name="entry.1054491933" placeholder="Teléfono" required>
-      <select name="entry.1547684256" required>
+      <input type="text" name="nombre" placeholder="Nombre completo" required>
+      <input type="email" name="correo" placeholder="Correo electrónico" required>
+      <input type="text" name="pais" placeholder="País" required>
+      <input type="tel" name="telefono" placeholder="Teléfono o WhatsApp" required>
+      <select name="experiencia" required>
         <option value="" disabled selected>¿Tienes experiencia en trading?</option>
         <option value="Sí">Sí</option>
         <option value="No">No</option>
@@ -251,19 +252,31 @@
     const form = document.getElementById('ojForm');
     const successMessage = document.getElementById('successMessage');
 
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const formData = new FormData(form);
-      fetch('https://docs.google.com/forms/u/0/d/e/1FAIpQLSfs8bVyGL_xFg73Uh5iDrtlInKZZ3SDnLTMITEzxzHL3AQuQw/formResponse', {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors'
-      }).then(() => {
-        form.reset();
-        successMessage.style.display = 'block';
-      }).catch(err => {
-        console.error('Error:', err);
-      });
+
+      const datos = Object.fromEntries(new FormData(form));
+
+      try {
+        const respuesta = await fetch("https://script.google.com/macros/s/AKfycbyjdvs0Urvhx_AsfetZCZLkYJoiwzqqEryccmPXUe4pGiXElY7cP2Sv6SlTD2Pk7krU/exec", {
+          method: "POST",
+          body: JSON.stringify(datos),
+          headers: { "Content-Type": "application/json" }
+        });
+
+        const resultado = await respuesta.json();
+        if (resultado.resultado === "OK") {
+          form.reset();
+          successMessage.style.display = "block";
+          setTimeout(() => successMessage.style.display = "none", 5000);
+        } else {
+          alert("❌ Error al enviar los datos. Inténtalo nuevamente.");
+        }
+
+      } catch (error) {
+        console.error("Error:", error);
+        alert("❌ Ocurrió un error al conectar con el servidor.");
+      }
     });
   </script>
 </body>
