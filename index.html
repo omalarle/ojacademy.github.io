@@ -228,8 +228,8 @@
     <p>© 2025 OJ Trading Academy. Todos los derechos reservados.</p>
   </footer>
 
-  <script>
-document.getElementById("contact-form").addEventListener("submit", async function(e) {
+ <script>
+document.getElementById("ojForm").addEventListener("submit", async function(e) {
   e.preventDefault();
 
   const data = {
@@ -238,20 +238,23 @@ document.getElementById("contact-form").addEventListener("submit", async functio
       "Correo electrónico": document.getElementById("correo").value,
       "País": document.getElementById("pais").value,
       "Teléfono o WhatsApp": document.getElementById("telefono").value,
-      "¿Tienes experiencia previa en trading?": document.querySelector('input[name="experiencia"]:checked')?.value || ""
+      "¿Tienes experiencia previa en trading?": document.getElementById("experiencia").value
     }]
   };
 
   try {
-    const response = await fetch("https://sheetdb.io/api/v1/jppk2qxihdj70", { // <-- reemplaza aquí tu URL de SheetDB
+    const response = await fetch("https://sheetdb.io/api/v1/jppk2qxihdj70", { // Tu URL de SheetDB
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     });
 
     if (response.ok) {
-      alert("✅ Tus datos fueron enviados correctamente. ¡Gracias por registrarte!");
-      document.getElementById("contact-form").reset();
+      document.getElementById("ojForm").reset();
+      document.getElementById("successMessage").style.display = "block";
+      setTimeout(() => {
+        document.getElementById("successMessage").style.display = "none";
+      }, 4000);
     } else {
       alert("⚠️ Ocurrió un error al enviar los datos. Intenta nuevamente.");
     }
@@ -260,6 +263,7 @@ document.getElementById("contact-form").addEventListener("submit", async functio
   }
 });
 </script>
+
 
 </body>
 </html>
