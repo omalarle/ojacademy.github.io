@@ -58,25 +58,6 @@
       color: #d4af37;
     }
 
-    .button {
-      display: block;
-      width: 220px;
-      margin: 30px auto;
-      padding: 15px;
-      text-align: center;
-      background-color: #d4af37;
-      color: #000;
-      font-weight: bold;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-
-    .button:hover {
-      background-color: #b38e28;
-    }
-
-    /* ---------- FORMULARIO ---------- */
     .formulario-container {
       display: flex;
       justify-content: center;
@@ -154,7 +135,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Botón flotante de WhatsApp */
     .whatsapp-float {
       position: fixed;
       bottom: 20px;
@@ -199,6 +179,24 @@
     <p>Curso: Trading desde Cero con Índices Sintéticos</p>
   </header>
 
+  <section>
+    <h2>¿Qué aprenderás?</h2>
+    <ul>
+      <li>Fundamentos del trading y los índices sintéticos</li>
+      <li>Análisis técnico con estructura y acción del precio</li>
+      <li>Estrategias reales de Swing Trading y Scalping</li>
+      <li>Gestión del riesgo y control emocional</li>
+      <li>Cómo pasar de cuenta demo a real con confianza</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Modalidad del curso</h2>
+    <p>🕐 Duración: 4 semanas</p>
+    <p>💻 Modalidad: 100% online (clases en vivo)</p>
+    <p>💬 Soporte: Grupo privado de WhatsApp y sesiones en vivo</p>
+  </section>
+
   <section class="formulario-container">
     <h2>Reserva tu cupo</h2>
     <p style="text-align:center; color:#ccc;">
@@ -210,21 +208,18 @@
       <input type="text" id="nombre" placeholder="Nombre completo" required>
       <input type="email" id="correo" placeholder="Correo electrónico" required>
       <input type="text" id="pais" placeholder="País" required>
-      <input type="tel" id="telefono" placeholder="Teléfono o WhatsApp" required>
+      <input type="tel" id="telefono" placeholder="Teléfono" required>
       <select id="experiencia" required>
         <option value="" disabled selected>¿Tienes experiencia en trading?</option>
         <option value="Sí">Sí</option>
         <option value="No">No</option>
       </select>
       <button type="submit">Enviar</button>
-      <p class="success-message" id="successMessage">
-        ✅ Gracias por tu interés. Un asesor de OJ Trading Academy te contactará pronto.
-      </p>
+      <p class="success-message" id="successMessage">✅ Gracias por tu interés. Un asesor de OJ Trading Academy te contactará pronto.</p>
     </form>
   </section>
 
-  <a href="https://wa.me/573025885695?text=Hola%20👋%20Estoy%20interesado%20en%20el%20curso%20Trading%20desde%20Cero%20con%20Índices%20Sintéticos%20de%20OJ%20Trading%20Academy." 
-     target="_blank" class="whatsapp-float">
+  <a href="https://wa.me/573025885695?text=Hola%20👋%20Estoy%20interesado%20en%20el%20curso%20Trading%20desde%20Cero%20con%20Índices%20Sintéticos%20de%20OJ%20Trading%20Academy." target="_blank" class="whatsapp-float">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
     Contáctame
   </a>
@@ -237,10 +232,10 @@
     const form = document.getElementById('ojForm');
     const successMessage = document.getElementById('successMessage');
 
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const datos = {
+      const data = {
         nombre: document.getElementById('nombre').value,
         correo: document.getElementById('correo').value,
         pais: document.getElementById('pais').value,
@@ -248,24 +243,22 @@
         experiencia: document.getElementById('experiencia').value
       };
 
-      fetch('https://script.google.com/macros/s/AKfycbyjdvs0Urvhx_AsfetZCZLkYJoiwzqqEryccmPXUe4pGiXElY7cP2Sv6SlTD2Pk7krU/exec', {
-        method: 'POST',
-        body: JSON.stringify(datos),
-        headers: { 'Content-Type': 'application/json' }
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.resultado === "OK") {
-          form.reset();
-          successMessage.style.display = 'block';
-        } else {
-          alert("Hubo un error al guardar tus datos. Inténtalo de nuevo.");
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert("Ocurrió un error al conectarse con el servidor.");
-      });
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbyjdvs0Urvhx_AsfetZCZLkYJoiwzqqEryccmPXUe4pGiXElY7cP2Sv6SlTD2Pk7krU/exec", {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+
+        successMessage.style.display = 'block';
+        form.reset();
+
+      } catch (error) {
+        alert("⚠️ Ocurrió un error al enviar los datos. Intenta nuevamente.");
+        console.error(error);
+      }
     });
   </script>
 </body>
